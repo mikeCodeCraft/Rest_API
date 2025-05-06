@@ -8,3 +8,15 @@ from .models import Profile
 def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+        
+       
+@receiver(pre_save, sender=User)
+def set_username(sender, instance, **kwargs):
+    if not instance.username:
+        username = f'{instance.first_name}_{instance.last_name}'.upper()
+        counter = 1
+        while User.objects.filter(username=username):
+            username = f'{instance.first_name}_{instance.last_name}_{counter}'.upper()
+            counter += 1
+        instance.username = username
+    
