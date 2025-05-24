@@ -8,6 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
     old_password = serializers.CharField(write_only=True, required=False)
     username = serializers.CharField(read_only=True)
     
+
     
     def validate(self, data):   
         request_method = self.context['request'].method 
