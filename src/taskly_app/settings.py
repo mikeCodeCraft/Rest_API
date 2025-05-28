@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-_8^qtve%(2sjc*lt5=4^qq@%n^f+r8*j-8u^_o8tv%!xov8(0^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'social_django',
     'rest_framework_social_oauth2',
+    
+    # for CORS integration (it helps in allowing cross-origin requests)
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +61,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    # CORS middleware must be placed before CommonMiddleware
+    # to ensure that CORS headers are added to the response
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+# Allow your React app
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',  # React + vite app running
 ]
 
 ROOT_URLCONF = 'taskly_app.urls'
@@ -159,3 +172,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Media files (uploads like profile pictures)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

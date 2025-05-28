@@ -10,7 +10,7 @@ class GenerateProfileImagePath(object):
 
     def __call__(self, instance, filename):
         ext = filename.split('.')[-1]
-        path = f'media/accounts/{instance.user.id}/images/'
+        path = f'accounts/{instance.user.id}/images/'
         name = f'profile_image.{ext}'
         return os.path.join(path, name)
     

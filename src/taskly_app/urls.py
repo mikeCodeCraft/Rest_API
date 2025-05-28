@@ -17,8 +17,10 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
 from users import router as users_api_router
 from rest_framework_social_oauth2.urls import urlpatterns
+
 
 auth_api_urls = [
     path(r'', include(('rest_framework_social_oauth2.urls', 'rest_framework_social_oauth2'), namespace='rest_framework_social_oauth2')),
@@ -27,10 +29,12 @@ auth_api_urls += urlpatterns
 
 if settings.DEBUG:
     auth_api_urls.append(path(r'verify/', include('rest_framework.urls')))
+    
 
 api_url_patterns = [
     path(r'auth/', include(auth_api_urls)),
     path(r'accounts/', include(users_api_router.router.urls)), 
+    path(r'accounts/', include('users.urls')),
 ]  
 
 
@@ -40,4 +44,6 @@ urlpatterns = [
     path('api/', include(api_url_patterns)),
 ]
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
