@@ -1,0 +1,11 @@
+media/
+
+node_modules/
+
+users/migrations/
+
+.env
+.ds_store
+db.sqlite3
+
+__pycache__/
