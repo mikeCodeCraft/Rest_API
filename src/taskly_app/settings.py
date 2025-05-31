@@ -71,7 +71,7 @@ MIDDLEWARE = [
 
 # Allow your React app
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',  # React + vite app running
+    'https://react-project-z36u.vercel.app/',
 ]
 
 ROOT_URLCONF = 'taskly_app.urls'
