@@ -14,6 +14,10 @@ import os
 import dj_database_url
 from pathlib import Path
 
+# Add these lines to load .env
+from dotenv import load_dotenv
+load_dotenv(os.path.join(Path(__file__).resolve().parent.parent, '.env'))
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +31,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost 127.0.0.1 rest-api-ut7r.onrender.com").split() # I will comeback to this later
+ALLOWED_HOSTS = [host.strip() for host in os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1,rest-api-ut7r.onrender.com").split(",")] # I will comeback to this later
 
 
 # Application definition
@@ -75,7 +79,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173', # remove later
     'http://localhost:4173', # remove later
-    'https://react-project-z36u.vercel.app/',
+    'https://mikecodecraft.vercel.app/login',
 ]
 
 ROOT_URLCONF = 'taskly_app.urls'
@@ -114,6 +118,9 @@ DATABASES = {
 }
 
 database_url = os.environ.get("DATABASE_URL")
+if not database_url:
+    raise ValueError("DATABASE_URL environment variable is not set or .env file is not loaded.")
+
 DATABASES['default'] = dj_database_url.parse(database_url)
 
 # Password validation
