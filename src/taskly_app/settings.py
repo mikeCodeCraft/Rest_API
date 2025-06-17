@@ -77,9 +77,17 @@ MIDDLEWARE = [
 
 # Allow your React app
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173', # remove later
-    'http://localhost:4173', # remove later
     'https://mikecodecraft.vercel.app',
+    'http://localhost:5173',
+    'http://localhost:4173',
+    # Add more allowed frontend URLs here
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://mikecodecraft.vercel.app',
+    'http://localhost:5173',
+    'http://localhost:4173',
+    # Add more if needed
 ]
 
 ROOT_URLCONF = 'taskly_app.urls'
