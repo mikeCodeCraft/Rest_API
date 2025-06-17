@@ -79,7 +79,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173', # remove later
     'http://localhost:4173', # remove later
-    'https://mikecodecraft.vercel.app/login',
+    'https://mikecodecraft.vercel.app',
 ]
 
 ROOT_URLCONF = 'taskly_app.urls'
