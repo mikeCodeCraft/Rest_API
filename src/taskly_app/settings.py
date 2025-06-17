@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = [host.strip() for host in os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1,rest-api-ut7r.onrender.com").split(",")] # I will comeback to this later
+ALLOWED_HOSTS = [host.strip() for host in os.environ.get("ALLOWED_HOSTS").split(",")] # I will comeback to this later
 
 
 # Application definition
