@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     
     # third-party apps
     'rest_framework',
+    'drf_yasg',
     
     #for token base Authentication
     'oauth2_provider',
