@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     
     # my apps
     "users",
+    "house",
     
     # third-party apps
     'rest_framework',

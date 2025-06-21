@@ -24,6 +24,7 @@ from rest_framework import permissions
 from taskly_app.views import api_home
 from taskly_app.schema import schema_view
 from taskly_app.api_root import api_root
+from house import router as house_api_router
 
 
 auth_api_urls = [
@@ -46,6 +47,7 @@ urlpatterns = [
     path('api/', api_root, name='api-root'),
     path('api/auth/', include(auth_api_urls)),
     path('api/accounts/', include(users_api_router.router.urls)),
+    path('api/house/', include(house_api_router.urls)),
     path('api/accounts/', include('users.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
